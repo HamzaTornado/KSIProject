@@ -7,7 +7,8 @@
 
 <script>
     tinymce.init({
-        selector: '#Description,#Objectif_projet'
+        selector: '#Description,#Objectif_projet',
+        plugins: "wordcount"
     });
 
 </script>
@@ -58,7 +59,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Date Debut</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date_debut, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBox("Date_debut", Model.Date_debut, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @required = "required" })
                 @Html.ValidationMessageFor(model => model.Date_debut, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,7 +67,8 @@
         <div class="form-group">
             <label class="control-label col-md-2">Date Fin</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date_fin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBox("Date_fin", Model.Date_fin, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @required = "required" })
+
                 @Html.ValidationMessageFor(model => model.Date_fin, "", new { @class = "text-danger" })
             </div>
         </div>

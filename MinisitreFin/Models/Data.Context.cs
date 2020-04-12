@@ -43,5 +43,7 @@ namespace MinisitreFin.Models
         public virtual DbSet<compte_rendu> compte_rendu { get; set; }
         public virtual DbSet<Utilisateur> Utilisateur { get; set; }
         public virtual DbSet<Initiatives> Initiatives { get; set; }
+        public virtual DbSet<Examens> Examens { get; set; }
+        public virtual DbSet<Patient> Patient { get; set; }
     }
 }

@@ -181,11 +181,13 @@
     <Compile Include="Controllers\CompteRenduController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EvenementsController.cs" />
+    <Compile Include="Controllers\ExamensController.cs" />
     <Compile Include="Controllers\GroupeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Initiatives1Controller.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembreGroupController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\ProjetsController.cs" />
     <Compile Include="Controllers\RolesManagerController.cs" />
     <Compile Include="Controllers\RootController.cs" />
@@ -207,10 +209,16 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompteRenduActivite.cs" />
+    <Compile Include="Models\Examens.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GroupeIndex.cs" />
     <Compile Include="Models\GroupeMembersDetailsModel.cs" />
     <Compile Include="Models\GroupeNameMemnersModel.cs" />
     <Compile Include="Models\GroupFilesModel.cs" />
+    <Compile Include="Models\Patient.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AllGroupDetailsViewModel.cs" />
     <Compile Include="Models\Articles.cs">
       <DependentUpon>Data.tt</DependentUpon>
@@ -2472,6 +2480,16 @@
     <Content Include="Views\Groupe\CR.cshtml" />
     <Content Include="Views\Activites\GroupeActivites.cshtml" />
     <Content Include="Views\CompteRendu\ActiviteCRS.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Examens\Create.cshtml" />
+    <Content Include="Views\Examens\Delete.cshtml" />
+    <Content Include="Views\Examens\Details.cshtml" />
+    <Content Include="Views\Examens\Edit.cshtml" />
+    <Content Include="Views\Examens\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppDocuments\" />

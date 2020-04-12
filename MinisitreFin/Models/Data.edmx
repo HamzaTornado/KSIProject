@@ -118,6 +118,34 @@
           <Property Name="Date_fin" Type="datetime" />
           <Property Name="Statut" Type="bit" />
         </EntityType>
+        <EntityType Name="Examens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="A" Type="varchar" MaxLength="50" />
+          <Property Name="A_Text" Type="text" />
+          <Property Name="B" Type="varchar" MaxLength="50" />
+          <Property Name="B_Text" Type="text" />
+          <Property Name="C" Type="varchar" MaxLength="50" />
+          <Property Name="C_Text" Type="text" />
+          <Property Name="D" Type="varchar" MaxLength="50" />
+          <Property Name="D_Text" Type="text" />
+          <Property Name="E" Type="varchar" MaxLength="50" />
+          <Property Name="E_Text" Type="text" />
+          <Property Name="F" Type="varchar" MaxLength="50" />
+          <Property Name="F_Text" Type="text" />
+          <Property Name="G" Type="varchar" MaxLength="50" />
+          <Property Name="G_Text" Type="text" />
+          <Property Name="H" Type="varchar" MaxLength="50" />
+          <Property Name="H_Text" Type="text" />
+          <Property Name="I" Type="varchar" MaxLength="50" />
+          <Property Name="I_Text" Type="text" />
+          <Property Name="J" Type="varchar" MaxLength="50" />
+          <Property Name="J_Text" Type="text" />
+          <Property Name="Statut" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="groue_detail">
           <Key>
             <PropertyRef Name="ID" />
@@ -165,6 +193,17 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" />
           <Property Name="MembreId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="100" />
+          <Property Name="Prenom" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="cin" Type="varchar" MaxLength="50" />
+          <Property Name="tele" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Projet">
           <Key>
@@ -395,6 +434,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FKPatient">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
+          <End Role="Examens" Type="Self.Examens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Examens">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FKUserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
@@ -430,10 +481,12 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="compte_rendu" EntityType="Self.compte_rendu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evenements" EntityType="Self.Evenements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Examens" EntityType="Self.Examens" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="groue_detail" EntityType="Self.groue_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groupe_thematiqe" EntityType="Self.Groupe_thematiqe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Initiatives" EntityType="Self.Initiatives" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Membre_group" EntityType="Self.Membre_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projet" EntityType="Self.Projet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Activite" EntityType="Self.Type_Activite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
@@ -497,6 +550,10 @@
           <AssociationSet Name="FK_FKMembreId" Association="Self.FK_FKMembreId">
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Membre_group" EntitySet="Membre_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FKPatient" Association="Self.FK_FKPatient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Examens" EntitySet="Examens" />
           </AssociationSet>
           <AssociationSet Name="FK_FKUserId" Association="Self.FK_FKUserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -759,6 +816,12 @@
           <AssociationSet Name="creer6" Association="MinistreFinModel.creer6">
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Initiatives" EntitySet="Initiatives" />
+          </AssociationSet>
+          <EntitySet Name="Examens" EntityType="MinistreFinModel.Examens" />
+          <EntitySet Name="Patient" EntityType="MinistreFinModel.Patient" />
+          <AssociationSet Name="FK_FKPatient" Association="MinistreFinModel.FK_FKPatient">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="Examens" EntitySet="Examens" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Articles">
@@ -1047,6 +1110,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Examens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="A" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="A_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="B" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="B_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="C" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="D" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="E" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="F" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="G" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="G_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="H" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="H_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="I" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="I_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="J" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="J_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Statut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patient" Relationship="MinistreFinModel.FK_FKPatient" FromRole="Examens" ToRole="Patient" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tele" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Examens" Relationship="MinistreFinModel.FK_FKPatient" FromRole="Patient" ToRole="Examens" />
+        </EntityType>
+        <Association Name="FK_FKPatient">
+          <End Type="MinistreFinModel.Patient" Role="Patient" Multiplicity="0..1" />
+          <End Type="MinistreFinModel.Examens" Role="Examens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Examens">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1267,6 +1383,47 @@
                 <ScalarProperty Name="Nom_init" ColumnName="Nom_init" />
                 <ScalarProperty Name="UtilisateurID" ColumnName="UtilisateurID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Examens">
+            <EntityTypeMapping TypeName="MinistreFinModel.Examens">
+              <MappingFragment StoreEntitySet="Examens">
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="J_Text" ColumnName="J_Text" />
+                <ScalarProperty Name="J" ColumnName="J" />
+                <ScalarProperty Name="I_Text" ColumnName="I_Text" />
+                <ScalarProperty Name="I" ColumnName="I" />
+                <ScalarProperty Name="H_Text" ColumnName="H_Text" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="G_Text" ColumnName="G_Text" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="F_Text" ColumnName="F_Text" />
+                <ScalarProperty Name="F" ColumnName="F" />
+                <ScalarProperty Name="E_Text" ColumnName="E_Text" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="D_Text" ColumnName="D_Text" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="C_Text" ColumnName="C_Text" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="B_Text" ColumnName="B_Text" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="A_Text" ColumnName="A_Text" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="MinistreFinModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="tele" ColumnName="tele" />
+                <ScalarProperty Name="cin" ColumnName="cin" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
