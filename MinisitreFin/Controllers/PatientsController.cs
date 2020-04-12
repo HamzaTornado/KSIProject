@@ -112,6 +112,7 @@ namespace MinisitreFin.Controllers
         {
             Patient patient = db.Patient.Find(id);
             db.Patient.Remove(patient);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

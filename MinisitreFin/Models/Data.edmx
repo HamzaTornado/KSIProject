@@ -124,27 +124,27 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientId" Type="int" />
-          <Property Name="A" Type="varchar" MaxLength="50" />
+          <Property Name="A" Type="varchar" MaxLength="250" />
           <Property Name="A_Text" Type="text" />
-          <Property Name="B" Type="varchar" MaxLength="50" />
+          <Property Name="B" Type="varchar" MaxLength="250" />
           <Property Name="B_Text" Type="text" />
-          <Property Name="C" Type="varchar" MaxLength="50" />
+          <Property Name="C" Type="varchar" MaxLength="250" />
           <Property Name="C_Text" Type="text" />
-          <Property Name="D" Type="varchar" MaxLength="50" />
+          <Property Name="D" Type="varchar" MaxLength="250" />
           <Property Name="D_Text" Type="text" />
-          <Property Name="E" Type="varchar" MaxLength="50" />
+          <Property Name="E" Type="varchar" MaxLength="250" />
           <Property Name="E_Text" Type="text" />
-          <Property Name="F" Type="varchar" MaxLength="50" />
+          <Property Name="F" Type="varchar" MaxLength="250" />
           <Property Name="F_Text" Type="text" />
-          <Property Name="G" Type="varchar" MaxLength="50" />
+          <Property Name="G" Type="varchar" MaxLength="250" />
           <Property Name="G_Text" Type="text" />
-          <Property Name="H" Type="varchar" MaxLength="50" />
+          <Property Name="H" Type="varchar" MaxLength="250" />
           <Property Name="H_Text" Type="text" />
-          <Property Name="I" Type="varchar" MaxLength="50" />
+          <Property Name="I" Type="varchar" MaxLength="250" />
           <Property Name="I_Text" Type="text" />
-          <Property Name="J" Type="varchar" MaxLength="50" />
+          <Property Name="J" Type="varchar" MaxLength="250" />
           <Property Name="J_Text" Type="text" />
-          <Property Name="Statut" Type="varchar" MaxLength="50" />
+          <Property Name="Statut" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="groue_detail">
           <Key>
@@ -817,8 +817,8 @@
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Initiatives" EntitySet="Initiatives" />
           </AssociationSet>
-          <EntitySet Name="Examens" EntityType="MinistreFinModel.Examens" />
           <EntitySet Name="Patient" EntityType="MinistreFinModel.Patient" />
+          <EntitySet Name="Examens" EntityType="MinistreFinModel.Examens" />
           <AssociationSet Name="FK_FKPatient" Association="MinistreFinModel.FK_FKPatient">
             <End Role="Patient" EntitySet="Patient" />
             <End Role="Examens" EntitySet="Examens" />
@@ -1110,35 +1110,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Examens">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PatientId" Type="Int32" />
-          <Property Name="A" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="A_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="B" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="B_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="C" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="C_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="D" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="D_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="E" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="E_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="F" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="F_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="G" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="G_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="H" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="H_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="I" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="I_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="J" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="J_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Statut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Patient" Relationship="MinistreFinModel.FK_FKPatient" FromRole="Examens" ToRole="Patient" />
-        </EntityType>
         <EntityType Name="Patient">
           <Key>
             <PropertyRef Name="Id" />
@@ -1150,6 +1121,35 @@
           <Property Name="cin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tele" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Examens" Relationship="MinistreFinModel.FK_FKPatient" FromRole="Patient" ToRole="Examens" />
+        </EntityType>
+        <EntityType Name="Examens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" />
+          <Property Name="A" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="A_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="B" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="B_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="C" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="C_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="D" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="D_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="E" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="E_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="F" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="F_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="G" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="G_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="H" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="H_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="I" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="I_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="J" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="J_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Statut" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patient" Relationship="MinistreFinModel.FK_FKPatient" FromRole="Examens" ToRole="Patient" />
         </EntityType>
         <Association Name="FK_FKPatient">
           <End Type="MinistreFinModel.Patient" Role="Patient" Multiplicity="0..1" />
@@ -1386,6 +1386,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="MinistreFinModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="tele" ColumnName="tele" />
+                <ScalarProperty Name="cin" ColumnName="cin" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Examens">
             <EntityTypeMapping TypeName="MinistreFinModel.Examens">
               <MappingFragment StoreEntitySet="Examens">
@@ -1411,18 +1423,6 @@
                 <ScalarProperty Name="A_Text" ColumnName="A_Text" />
                 <ScalarProperty Name="A" ColumnName="A" />
                 <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Patient">
-            <EntityTypeMapping TypeName="MinistreFinModel.Patient">
-              <MappingFragment StoreEntitySet="Patient">
-                <ScalarProperty Name="tele" ColumnName="tele" />
-                <ScalarProperty Name="cin" ColumnName="cin" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -159,13 +159,26 @@ namespace MinisitreFin.Controllers
         }
 
         // GET: Examens/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id,int? idpatient)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Examens examens = db.Examens.Find(id);
+            if (examens == null)
+            {
+                return HttpNotFound();
+            }
+            return View(examens);
+        }
+        public ActionResult ExamenPatient(int? idpatient)
+        {
+            if (idpatient == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var examens = db.Examens.Where(e=>e.PatientId== idpatient).Include(e=>e.Patient);
             if (examens == null)
             {
                 return HttpNotFound();
@@ -207,7 +220,7 @@ namespace MinisitreFin.Controllers
             {
                 db.Examens.Add(examens);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Patinets");
+                return RedirectToAction("Index", "Patients");
             }
 
             ViewBag.PatientId = new SelectList(db.Patient, "Id", "Nom", examens.PatientId);

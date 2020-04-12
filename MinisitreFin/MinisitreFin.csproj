@@ -2490,6 +2490,7 @@
     <Content Include="Views\Examens\Details.cshtml" />
     <Content Include="Views\Examens\Edit.cshtml" />
     <Content Include="Views\Examens\Index.cshtml" />
+    <Content Include="Views\Examens\ExamenPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppDocuments\" />

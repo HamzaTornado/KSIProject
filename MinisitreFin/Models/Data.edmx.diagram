@@ -40,8 +40,8 @@
         <EntityTypeShape EntityType="MinistreFinModel.Initiatives" Width="1.5" PointX="4.125" PointY="26.25" />
         <AssociationConnector Association="MinistreFinModel.contient" />
         <AssociationConnector Association="MinistreFinModel.creer6" />
-        <EntityTypeShape EntityType="MinistreFinModel.Examens" Width="1.5" PointX="7.625" PointY="1.125" />
         <EntityTypeShape EntityType="MinistreFinModel.Patient" Width="1.5" PointX="5.375" PointY="2.75" />
+        <EntityTypeShape EntityType="MinistreFinModel.Examens" Width="1.5" PointX="7.625" PointY="1.125" />
         <AssociationConnector Association="MinistreFinModel.FK_FKPatient" />
         </Diagram>
     </edmx:Diagrams>
